@@ -1,0 +1,61 @@
+
+:root {
+  --font-family: var(--font-manrope);
+  --second-family: var(--font-inter);
+  --main: #101828;
+	--gray: #8d929a;
+	--gray-light: #dadde1;
+	--badges: #f2f4f7;
+	--inputs: #f7f7f7;
+	--white: #fff;
+	--button: #3470ff;
+	--button-hover: #0b44cd;
+}
+
+
+body {
+  font-family: var(--font-family);
+  margin: 0;
+
+}
+
+/* Основні теги */
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { 
+  color: #000000;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  color: #000000;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
