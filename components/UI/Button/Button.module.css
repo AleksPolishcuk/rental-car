@@ -1,0 +1,28 @@
+.button {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.primary {
+  background-color: var(--primary-blue);
+  color: #000;
+}
+
+.primary:hover {
+  background-color: var(--dark-blue);
+}
+
+.secondary {
+  background-color: var(--light-gray);
+  color: var(--text-dark);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

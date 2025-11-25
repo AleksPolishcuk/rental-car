@@ -1,0 +1,117 @@
+.details {
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+.carInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.carImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.location {
+  display: flex;
+  gap: 16px;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+.specs,
+.accessories,
+.functionalities,
+.rentalConditions {
+  padding: 20px;
+  background-color: var(--background-gray);
+  border-radius: 12px;
+}
+
+.specs h3,
+.accessories h3,
+.functionalities h3,
+.rentalConditions h3 {
+  margin-bottom: 16px;
+  color: var(--text-dark);
+  font-size: 18px;
+}
+
+.specsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.accessories ul,
+.functionalities ul {
+  list-style: none;
+  padding: 0;
+}
+
+.accessories li,
+.functionalities li {
+  padding: 4px 0;
+  color: var(--text-dark);
+}
+
+.conditionsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.condition {
+  background-color: var(--white);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.bookingSection {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.notFound {
+  text-align: center;
+  padding: 80px 20px;
+  font-size: 18px;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+
+  .bookingSection {
+    position: static;
+  }
+}

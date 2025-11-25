@@ -1,0 +1,69 @@
+.filters {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  background-color: var(--background-gray);
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.filterLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.select {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--white);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}
+
+.mileageInputs {
+  display: flex;
+  gap: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+  flex: 1;
+}
+
+.inputLabel {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--text-light);
+  pointer-events: none;
+}
+
+.input {
+  padding: 12px 12px 12px 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--white);
+  font-size: 14px;
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}
