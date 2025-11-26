@@ -7,20 +7,19 @@ const api = axios.create({
 
 export const carApi = {
   getCars: (params?: {
-    make?: string;
+    brand?: string;
     rentalPrice?: string;
-    mileageFrom?: number;
-    mileageTo?: number;
+    minMileage?: number;
+    maxMileage?: number;
     page?: number;
   }): Promise<CarsResponse> =>
     api.get("/cars", { params }).then((res) => res.data),
 
+  getBrands: (): Promise<string[]> => api.get("/brands").then((r) => r.data),
+
   getCarById: (id: string): Promise<Car> =>
-    api.get(`/cars/${id}`).then((res) => res.data),
+    api.get(`/cars/${id}`).then((r) => r.data),
 
-  getBrands: (): Promise<string[]> =>
-    api.get("/brands").then((res) => res.data),
-
-  bookCar: (carId: string, data: BookingFormData): Promise<void> =>
-    api.post(`/cars/${carId}/booking`, data),
+  bookCar: (id: string, data: BookingFormData): Promise<void> =>
+    api.post(`/cars/${id}/booking`, data),
 };
