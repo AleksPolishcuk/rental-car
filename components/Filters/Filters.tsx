@@ -5,92 +5,130 @@ import { useCarStore } from "@/lib/store/carStore";
 import { carApi } from "@/lib/api/api";
 import styles from "./Filters.module.css";
 
-export const Filters: React.FC = () => {
+export default function Filters() {
   const [brands, setBrands] = useState<string[]>([]);
-  const { filters, setFilters, fetchCars } = useCarStore();
 
+  const { setFilters, resetSearch, fetchCars } = useCarStore();
+
+  const [localFilters, setLocalFilters] = useState({
+    brand: "",
+    price: "",
+    mileageFrom: "",
+    mileageTo: "",
+  });
+
+  // Load brands
   useEffect(() => {
-    carApi.getBrands().then(setBrands).catch(console.error);
+    (async () => {
+      try {
+        const list = await carApi.getBrands();
+        setBrands(list);
+      } catch (err) {
+        console.error(err);
+      }
+    })();
   }, []);
 
-  const handleFilterChange = (newFilters: Partial<typeof filters>) => {
-    const updatedFilters = { ...filters, ...newFilters };
-    setFilters(updatedFilters);
-    fetchCars(updatedFilters, 1);
-  };
+  const handleSearch = () => {
+    resetSearch();
 
-  const handleMileageChange = (type: "from" | "to", value: string) => {
-    const numValue = value ? parseInt(value) : undefined;
-    handleFilterChange({
-      mileageFrom: type === "from" ? numValue : filters.mileageFrom,
-      mileageTo: type === "to" ? numValue : filters.mileageTo,
-    });
+    const normalized = {
+      brand: localFilters.brand || undefined,
+      price: localFilters.price || undefined,
+      mileageFrom: localFilters.mileageFrom
+        ? Number(localFilters.mileageFrom)
+        : undefined,
+      mileageTo: localFilters.mileageTo
+        ? Number(localFilters.mileageTo)
+        : undefined,
+    };
+
+    setFilters(normalized);
+    fetchCars(normalized, 1);
   };
 
   return (
-    <div className={styles.filters}>
-      <div className={styles.filterGroup}>
-        <label className={styles.filterLabel}>Car brand</label>
-        <select
-          value={filters.brand || ""}
-          onChange={(e) =>
-            handleFilterChange({ brand: e.target.value || undefined })
-          }
-          className={styles.select}
-        >
-          <option value="">Choose a brand</option>
-          {brands.map((brand) => (
-            <option key={brand} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div className={styles.wrapper}>
+      {/* BRAND */}
+      <div className={styles.field}>
+        <label className={styles.label}>Car brand</label>
 
-      <div className={styles.filterGroup}>
-        <label className={styles.filterLabel}>Price/ 1 hour</label>
-        <select
-          value={filters.price || ""}
-          onChange={(e) =>
-            handleFilterChange({ price: e.target.value || undefined })
-          }
-          className={styles.select}
-        >
-          <option value="">Choose a price</option>
-          <option value="30">To $30</option>
-          <option value="40">To $40</option>
-          <option value="50">To $50</option>
-          <option value="60">To $60</option>
-          <option value="70">To $70</option>
-          <option value="80">To $80</option>
-        </select>
-      </div>
-
-      <div className={styles.filterGroup}>
-        <label className={styles.filterLabel}>Car mileage / km</label>
-        <div className={styles.mileageInputs}>
-          <div className={styles.inputWrapper}>
-            <span className={styles.inputLabel}>From</span>
-            <input
-              type="number"
-              placeholder="0"
-              value={filters.mileageFrom || ""}
-              onChange={(e) => handleMileageChange("from", e.target.value)}
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.inputWrapper}>
-            <span className={styles.inputLabel}>To</span>
-            <input
-              type="number"
-              placeholder="100000"
-              value={filters.mileageTo || ""}
-              onChange={(e) => handleMileageChange("to", e.target.value)}
-              className={styles.input}
-            />
-          </div>
+        <div className={styles.selectBox}>
+          <select
+            className={styles.select}
+            value={localFilters.brand}
+            onChange={(e) =>
+              setLocalFilters({ ...localFilters, brand: e.target.value })
+            }
+          >
+            <option value="">Choose a brand</option>
+            {brands.map((brand) => (
+              <option key={brand}>{brand}</option>
+            ))}
+          </select>
         </div>
       </div>
+
+      {/* PRICE */}
+      <div className={styles.field}>
+        <label className={styles.label}>Price / 1 hour</label>
+
+        <div className={styles.selectBox}>
+          <select
+            className={styles.select}
+            value={localFilters.price}
+            onChange={(e) =>
+              setLocalFilters({ ...localFilters, price: e.target.value })
+            }
+          >
+            <option value="">Choose a price</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="80">80</option>
+          </select>
+        </div>
+      </div>
+
+      {/* MILEAGE */}
+      <div className={styles.field}>
+        <label className={styles.label}>Car mileage / km</label>
+
+        <div className={styles.mileageBox}>
+          <input
+            type="number"
+            placeholder="From"
+            className={styles.mileageInputFrom}
+            value={localFilters.mileageFrom}
+            onChange={(e) =>
+              setLocalFilters({
+                ...localFilters,
+                mileageFrom: e.target.value,
+              })
+            }
+          />
+
+          <span className={styles.mileageDivider}></span>
+
+          <input
+            type="number"
+            placeholder="To"
+            className={styles.mileageInputTo}
+            value={localFilters.mileageTo}
+            onChange={(e) =>
+              setLocalFilters({
+                ...localFilters,
+                mileageTo: e.target.value,
+              })
+            }
+          />
+        </div>
+      </div>
+
+      {/* SEARCH BUTTON */}
+      <button className={styles.searchBtn} onClick={handleSearch}>
+        Search
+      </button>
     </div>
   );
-};
+}

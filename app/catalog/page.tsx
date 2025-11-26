@@ -2,8 +2,8 @@
 
 import React, { useEffect } from "react";
 import { useCarStore } from "@/lib/store/carStore";
+import Filters from "@/components/Filters/Filters";
 import { CarCard } from "@/components/CarCard/CarCard";
-import { Filters } from "@/components/Filters/Filters";
 import { Loader } from "@/components/UI/Loader/Loader";
 import { Button } from "@/components/UI/Button/Button";
 import styles from "./CatalogPage.module.css";
@@ -14,20 +14,12 @@ export default function CatalogPage() {
 
   useEffect(() => {
     loadFavorites();
-    if (cars.length === 0) {
-      fetchCars();
-    }
+    fetchCars({}, 1);
   }, []);
-
-  const handleLoadMore = () => {
-    loadMoreCars();
-  };
 
   return (
     <div className="container">
       <div className={styles.catalog}>
-        <h1 className={styles.title}>Car Catalog</h1>
-
         <Filters />
 
         {cars.length === 0 && !loading ? (
@@ -44,14 +36,10 @@ export default function CatalogPage() {
 
             {loading && <Loader />}
 
-            {hasMore && (
+            {!loading && hasMore && (
               <div className={styles.loadMoreContainer}>
-                <Button
-                  onClick={handleLoadMore}
-                  variant="primary"
-                  disabled={loading}
-                >
-                  {loading ? "Loading..." : "Load more"}
+                <Button onClick={loadMoreCars} variant="primary">
+                  Load more
                 </Button>
               </div>
             )}
