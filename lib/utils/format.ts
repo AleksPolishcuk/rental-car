@@ -3,6 +3,16 @@ export const formatMileage = (mileage: number): string => {
 };
 
 export const extractCityFromAddress = (address: string): string => {
-  const cityMatch = address.match(/([A-Za-z\u0400-\u04FF]+)(?=,)/);
-  return cityMatch ? cityMatch[1] : address.split(",")[0]?.trim() || "";
+  const parts = address.split(",");
+  // Шукаємо місто (зазвичай це передостанній елемент)
+  if (parts.length >= 2) {
+    return parts[parts.length - 2]?.trim() || "";
+  }
+  return address;
+};
+
+export const extractCountryFromAddress = (address: string): string => {
+  const parts = address.split(",");
+  // Країна - це останній елемент
+  return parts[parts.length - 1]?.trim() || "Ukraine";
 };

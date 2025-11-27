@@ -1,47 +1,69 @@
 .card {
-  background: var(--white);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 16px;
   transition: all 0.3s ease;
   position: relative;
+  width: 276px;
+  /* padding: 16px; */
 }
 
 .card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
 .imageContainer {
   position: relative;
   margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .image {
   width: 100%;
-  height: 200px;
+  height: 268px;
   object-fit: cover;
-  border-radius: 8px;
 }
 
 .favoriteButton {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: var(--white);
+  top: 14px;
+  right: 14px;
+  fill: #3470ff;
+  background: transparent;
   border-radius: 50%;
   width: 32px;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
+  border: none;
 }
 
 .favoriteButton:hover {
   transform: scale(1.1);
+}
+
+.favoriteButton.favorite {
+  background: transparent;
+}
+
+.heartIcon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  transition: all 0.3s ease;
+}
+
+.favoriteButton:not(.favorite) .heartIcon {
+  color: transparent;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+}
+
+.favoriteButton.favorite .heartIcon {
+  color: #3470ff;
 }
 
 .cardHeader {
@@ -56,60 +78,73 @@
   font-weight: 600;
   color: var(--text-dark);
   flex: 1;
+  line-height: 1.4;
 }
 
 .model {
-  color: var(--primary-blue);
+  color: #3470ff;
 }
 
 .price {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--primary-blue);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  margin-right: 10px;
 }
 
 .cardInfo {
-  margin-bottom: 12px;
+  margin-bottom: 28px;
+  color: #8d929a;
+  line-height: 1.3;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
 }
 
 .location {
-  color: var(--text-light);
-  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 4px;
 }
 
 .details {
   display: flex;
-  gap: 12px;
-  font-size: 12px;
-  color: var(--text-light);
+  align-items: center;
+  gap: 6px;
 }
 
-.description {
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--text-dark);
-  margin-bottom: 16px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.divider {
+  height: 16px;
+  color: #dadde1;
+}
+
+.city,
+.country,
+.type,
+.mileage {
+  color: #8d929a;
 }
 
 .readMore {
   display: inline-block;
-  background-color: var(--primary-blue);
-  color: #000;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
+  background-color: #3470ff;
+  color: #fff;
+  padding: 12px 0;
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: 600;
+  line-height: 1.25;
   text-align: center;
   transition: background-color 0.3s ease;
   width: 100%;
   cursor: pointer;
+  border: none;
+  text-decoration: none;
 }
 
 .readMore:hover {
-  background-color: var(--dark-blue);
+  background-color: #0b44cd;
 }

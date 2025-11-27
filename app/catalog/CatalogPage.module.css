@@ -15,9 +15,11 @@
 
 .carsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  margin-bottom: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  row-gap: 48px; /* вертикальні відступи */
+  column-gap: 24px; /* горизонтальні відступи */
+  justify-items: center; /* центрування карток всередині клітинок */
+  margin-bottom: 80px;
 }
 
 .noResults {
@@ -31,21 +33,18 @@
   display: flex;
   justify-content: center;
   margin: 40px 0;
-  padding: 20px 0;
 }
 
-.loadMoreButton {
-  background-color: var(--primary-blue);
-  color: var(--white);
+/* .loadMoreButton {
+  border: 1px solid #3470ff;
+  color: #101828;
   padding: 12px 32px;
-  border: none;
   border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   min-width: 200px;
-}
+} */
 
 .loadMoreButton:hover {
   background-color: var(--dark-blue);
@@ -57,7 +56,7 @@
   opacity: 0.6;
 }
 
-/* Адаптація для планшетів */
+/* Адаптація для планшетів
 @media (max-width: 1439px) {
   .catalog {
     margin: 0 80px;
@@ -76,6 +75,7 @@
   }
 
   .carsGrid {
+    pading-top: 56px;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
   }
@@ -87,7 +87,7 @@
 }
 
 /* Адаптація для мобільних пристроїв */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .catalog {
     margin: 0 20px;
     padding: 32px 0;
@@ -141,4 +141,4 @@
     padding: 12px 20px;
     min-width: 160px;
   }
-}
+} */
