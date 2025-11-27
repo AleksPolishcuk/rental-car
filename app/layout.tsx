@@ -1,17 +1,17 @@
-import './globals.css';
-import {Manrope, Inter} from "next/font/google";
+import "./globals.css";
+import { Manrope, Inter } from "next/font/google";
 import Header from "@/components/Header/Header";
 
 const manrope = Manrope({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', ],
-  variable: '--font-manrope',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
 });
 
 const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inter',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
 });
 export default function RootLayout({
   children,
@@ -20,13 +20,12 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="ua" >
+    <html lang="ua" className={`${manrope.variable} ${inter.variable}`}>
       <body>
-        
-            <Header />
-            <main>
-              {children}
-            </main>
+        <div className="container">
+          <Header />
+        </div>
+        <main>{children}</main>
       </body>
     </html>
   );
