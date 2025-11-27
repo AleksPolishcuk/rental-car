@@ -29,6 +29,29 @@ export default function Filters() {
     })();
   }, []);
 
+  // Функція для форматування числа з роздільниками тисяч
+  const formatNumber = (value: string): string => {
+    if (!value) return "";
+    const number = value.replace(/\D/g, "");
+    return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const handleMileageFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value.replace(/,/g, "");
+    setLocalFilters({
+      ...localFilters,
+      mileageFrom: rawValue,
+    });
+  };
+
+  const handleMileageToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value.replace(/,/g, "");
+    setLocalFilters({
+      ...localFilters,
+      mileageTo: rawValue,
+    });
+  };
+
   const handleSearch = () => {
     resetSearch();
 
@@ -49,11 +72,11 @@ export default function Filters() {
 
   return (
     <div className={styles.wrapper}>
-      {/* BRAND */}
-      <div className={styles.field}>
-        <label className={styles.label}>Car brand</label>
-
-        <div className={styles.selectBox}>
+      {/* Контейнер для перших двох фільтрів - тільки для таблету */}
+      <div className={styles.filtersRow}>
+        {/* BRAND */}
+        <div className={styles.field}>
+          <label className={styles.label}>Car brand</label>
           <select
             className={styles.select}
             value={localFilters.brand}
@@ -67,13 +90,10 @@ export default function Filters() {
             ))}
           </select>
         </div>
-      </div>
 
-      {/* PRICE */}
-      <div className={styles.field}>
-        <label className={styles.label}>Price / 1 hour</label>
-
-        <div className={styles.selectBox}>
+        {/* PRICE */}
+        <div className={styles.field}>
+          <label className={styles.label}>Price / 1 hour</label>
           <select
             className={styles.select}
             value={localFilters.price}
@@ -90,42 +110,33 @@ export default function Filters() {
         </div>
       </div>
 
-      {/* MILEAGE */}
+      {/* MILEAGE - під першими двома фільтрами */}
       <div className={styles.field}>
         <label className={styles.label}>Car mileage / km</label>
-
         <div className={styles.mileageBox}>
-          <input
-            type="number"
-            placeholder="From"
-            className={styles.mileageInputFrom}
-            value={localFilters.mileageFrom}
-            onChange={(e) =>
-              setLocalFilters({
-                ...localFilters,
-                mileageFrom: e.target.value,
-              })
-            }
-          />
-
+          <div className={styles.mileageInputWrapper}>
+            <span className={styles.mileageLabel}>From</span>
+            <input
+              type="text"
+              className={styles.mileageInput}
+              value={formatNumber(localFilters.mileageFrom)}
+              onChange={handleMileageFromChange}
+            />
+          </div>
           <span className={styles.mileageDivider}></span>
-
-          <input
-            type="number"
-            placeholder="To"
-            className={styles.mileageInputTo}
-            value={localFilters.mileageTo}
-            onChange={(e) =>
-              setLocalFilters({
-                ...localFilters,
-                mileageTo: e.target.value,
-              })
-            }
-          />
+          <div className={styles.mileageInputWrapper}>
+            <span className={styles.mileageLabel}>To</span>
+            <input
+              type="text"
+              className={styles.mileageInput}
+              value={formatNumber(localFilters.mileageTo)}
+              onChange={handleMileageToChange}
+            />
+          </div>
         </div>
       </div>
 
-      {/* SEARCH BUTTON */}
+      {/* SEARCH BUTTON - під mileage */}
       <button className={styles.searchBtn} onClick={handleSearch}>
         Search
       </button>

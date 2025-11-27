@@ -1,9 +1,35 @@
+/* Header.module.css - альтернативний варіант */
+.wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background-color: #dadde1;
+  z-index: -1;
+}
+
 .container {
+  padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 120px;
-  background-color: #dadde1;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Решта стилів залишається без змін */
+.headerLogoWrapper {
+  display: flex;
+  align-items: center;
 }
 
 .navigation {
@@ -11,17 +37,44 @@
   margin: 0;
   padding: 0;
   display: flex;
-  font-weight: 500;
-  gap: 32px;
+
+  gap: 12px;
 }
 
-.navigation li a {
+.navigationItem a {
   text-decoration: none;
   color: #101828;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 12px;
   line-height: 1.25;
   text-align: center;
+  transition: color 0.3s ease;
 }
-.navigation li a:hover {
+
+.navigationItem a:hover {
   color: #0b44cd;
+}
+
+/* Tablet: 768px+ */
+@media (min-width: 768px) {
+  .container {
+    padding: 22px 32px;
+  }
+  .navigation {
+    gap: 28px;
+  }
+  .navigationItem a {
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+
+/* Desktop: 1440px+ */
+@media (min-width: 1440px) {
+  .container {
+    padding: 26px 120px;
+  }
+  .navigation {
+    gap: 32px;
+  }
 }

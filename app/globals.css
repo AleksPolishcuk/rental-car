@@ -13,7 +13,7 @@
 
 body {
   font-family: "Manrope", sans-serif, var(--font-family, "Manrope", sans-serif);
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Основні теги */
@@ -52,4 +52,29 @@ img {
 ul,
 ol {
   list-style: none;
+}
+
+/* Mobile First - базові стилі (320px-374px) */
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Адаптивна верстка з 375px */
+@media (min-width: 375px) {
+  .container {
+  }
+}
+
+/* Tablet: 768px+ */
+@media (min-width: 768px) {
+  .container {
+  }
+}
+
+/* Desktop: 1440px+ */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
 }
