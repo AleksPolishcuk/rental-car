@@ -1,9 +1,85 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useCarStore } from "@/lib/store/carStore";
 import { carApi } from "@/lib/api/api";
 import styles from "./Filters.module.css";
+
+interface CustomSelectProps {
+  value: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string }[];
+  placeholder: string;
+}
+
+const CustomSelect: React.FC<CustomSelectProps> = ({
+  value,
+  onChange,
+  options,
+  placeholder,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  const handleOptionClick = (optionValue: string) => {
+    onChange(optionValue);
+    setIsOpen(false);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      selectRef.current &&
+      !selectRef.current.contains(event.target as Node)
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const selectedOption = options.find((opt) => opt.value === value);
+  const displayValue = selectedOption ? selectedOption.label : placeholder;
+
+  return (
+    <div className={styles.customSelect} ref={selectRef}>
+      <div
+        className={`${styles.selectTrigger} ${isOpen ? styles.open : ""}`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className={value ? styles.selectedValue : styles.placeholder}>
+          {displayValue}
+        </span>
+        <svg
+          className={`${styles.arrow} ${isOpen ? styles.rotated : ""}`}
+          width="16"
+          height="16"
+        >
+          <use href="/symbol-defs.svg#icon-Property-1Default" />
+        </svg>
+      </div>
+      {isOpen && (
+        <div className={styles.optionsList}>
+          {options.map((option) => (
+            <div
+              key={option.value}
+              className={`${styles.option} ${
+                option.value === value ? styles.selected : ""
+              }`}
+              onClick={() => handleOptionClick(option.value)}
+            >
+              {option.label}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default function Filters() {
   const [brands, setBrands] = useState<string[]>([]);
@@ -29,7 +105,21 @@ export default function Filters() {
     })();
   }, []);
 
-  // Функція для форматування числа з роздільниками тисяч
+  const brandOptions = [
+    { value: "", label: "Choose a brand" },
+    ...brands.map((brand) => ({ value: brand, label: brand })),
+  ];
+
+  const priceOptions = [
+    { value: "", label: "Choose a price" },
+    { value: "30", label: "30" },
+    { value: "40", label: "40" },
+    { value: "50", label: "50" },
+    { value: "60", label: "60" },
+    { value: "70", label: "70" },
+    { value: "80", label: "80" },
+  ];
+
   const formatNumber = (value: string): string => {
     if (!value) return "";
     const number = value.replace(/\D/g, "");
@@ -72,46 +162,36 @@ export default function Filters() {
 
   return (
     <div className={styles.wrapper}>
-      {/* Контейнер для перших двох фільтрів - тільки для таблету */}
       <div className={styles.filtersRow}>
         {/* BRAND */}
         <div className={styles.field}>
           <label className={styles.label}>Car brand</label>
-          <select
-            className={styles.select}
+          <CustomSelect
             value={localFilters.brand}
-            onChange={(e) =>
-              setLocalFilters({ ...localFilters, brand: e.target.value })
+            onChange={(value) =>
+              setLocalFilters({ ...localFilters, brand: value })
             }
-          >
-            <option value="">Choose a brand</option>
-            {brands.map((brand) => (
-              <option key={brand}>{brand}</option>
-            ))}
-          </select>
+            options={brandOptions}
+            placeholder="Choose a brand"
+          />
         </div>
 
         {/* PRICE */}
         <div className={styles.field}>
           <label className={styles.label}>Price / 1 hour</label>
-          <select
-            className={styles.select}
+          <CustomSelect
             value={localFilters.price}
-            onChange={(e) =>
-              setLocalFilters({ ...localFilters, price: e.target.value })
+            onChange={(value) =>
+              setLocalFilters({ ...localFilters, price: value })
             }
-          >
-            <option value="">Choose a price</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-            <option value="80">80</option>
-          </select>
+            options={priceOptions}
+            placeholder="Choose a price"
+          />
         </div>
       </div>
 
-      {/* MILEAGE - під першими двома фільтрами */}
-      <div className={styles.field}>
+      {/* MILEAGE */}
+      <div className={styles.mileageField}>
         <label className={styles.label}>Car mileage / km</label>
         <div className={styles.mileageBox}>
           <div className={styles.mileageInputWrapper}>
@@ -136,10 +216,11 @@ export default function Filters() {
         </div>
       </div>
 
-      {/* SEARCH BUTTON - під mileage */}
-      <button className={styles.searchBtn} onClick={handleSearch}>
-        Search
-      </button>
+      <div className={styles.searchButtonContainer}>
+        <button className={styles.searchBtn} onClick={handleSearch}>
+          Search
+        </button>
+      </div>
     </div>
   );
 }

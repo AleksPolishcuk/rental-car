@@ -1,13 +1,11 @@
-/* Filters.module.css - Mobile First (320px+) */
-
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   margin: 0 auto 32px auto;
-  width: 300px; /* Змінити з 200px на 100% */
-  padding: 0 20px; /* Додати падінги для мобільної версії */
-  box-sizing: border-box; /* Важливо для правильного розрахунку ширини */
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  align-self: center;
 }
 
 .field {
@@ -15,80 +13,155 @@
   flex-direction: column;
   gap: 8px;
   flex: 1;
+  font-weight: 400;
+  max-width: 200px;
+  align-self: center;
+  position: relative;
+  margin: 0 auto;
 }
 
 .label {
-  font-size: 12px;
+  font-size: 8px;
   color: #8a8a8a;
 }
 
-.select {
-  width: 100%;
-  height: 40px;
-  border-radius: 14px;
-  padding: 8px 12px;
-  border: none;
-  background: #f7f7f7;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.25;
-  color: #101828;
-  outline: none;
-  transition: all 0.2s ease;
+/* Custom Select Styles */
+.customSelect {
+  position: relative;
 }
 
+.selectTrigger {
+  height: 32px;
+  border-radius: 14px;
+  padding: 0 12px;
+  background: #f7f7f7;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.selectTrigger:hover {
+  background: #f0f0f0;
+}
+
+.placeholder {
+  color: #101828;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+.selectedValue {
+  color: #101828;
+}
+
+.arrow {
+  color: #8d929a;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.optionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #f7f7f7;
+  border-radius: 14px;
+  margin-top: 4px;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.option {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #8d929a;
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover {
+  background: #f7f7f7;
+  color: #101828;
+}
+
+.option.selected {
+  color: #101828;
+  background: #f7f7f7;
+}
+
+/* Mileage Styles */
 .mileageField {
   display: flex;
   flex-direction: column;
   gap: 8px;
   flex: 1;
+  height: 32px;
+  margin: 0 auto;
 }
 
 .mileageBox {
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 40px;
+  width: 200px;
+  height: 32px;
   border-radius: 14px;
   background: #f7f7f7;
   overflow: hidden;
   transition: all 0.2s ease;
-  min-width: 0; /* Додати для правильного flex поведінки */
+  min-width: 0;
+  margin-bottom: 12px;
 }
 
 .mileageInputWrapper {
   display: flex;
   align-items: center;
   flex: 1;
-  height: 100%;
-  position: relative;
+  height: 24px;
   padding-left: 12px;
-  min-width: 0; /* Важливо для обрізання тексту */
+  min-width: 0;
 }
 
 .mileageLabel {
-  font-size: 14px;
+  font-size: 12px;
   color: #101828;
   margin-right: 8px;
   white-space: nowrap;
-  flex-shrink: 0; /* Запобігає стисканню тексту */
+  flex-shrink: 0;
 }
 
 .mileageInput {
   flex: 1;
-  height: 100%;
-  padding: 8px 12px 8px 0; /* Розкоментувати падінги */
+  height: 32px;
+  padding: 0 12px 0 0;
   background: transparent;
   border: none;
   outline: none;
-  font-size: 14px;
+  font-size: 12px;
   color: #101828;
-  min-width: 0; /* Розкоментувати - важливо для flex */
-  text-align: left; /* Розкоментувати */
-  width: 100%; /* Додати для гарантії ширини */
+  min-width: 0;
+  text-align: left;
+  width: 200px;
 }
 
-/* Сховати спіннери для number input */
 .mileageInput::-webkit-outer-spin-button,
 .mileageInput::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -106,17 +179,24 @@
   flex-shrink: 0;
 }
 
+.searchButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .searchBtn {
   border-radius: 12px;
   padding: 10px 0;
-  width: 100%;
-  height: 40px;
+  width: 120px;
+  height: 32px;
   background: #3470ff;
   color: #fff;
   border: none;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.25;
   transition: all 0.2s ease;
   flex-shrink: 0;
   display: flex;
@@ -132,11 +212,20 @@
 @media (min-width: 768px) {
   .wrapper {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     min-width: 400px;
     margin: 0 auto 40px auto;
     align-items: center;
-    padding: 0 32px; /* Додати падінги для таблету */
+    padding: 0 32px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .placeholder {
+    font-size: 12px;
+    font-weight: 500;
   }
 
   .filtersRow {
@@ -155,48 +244,57 @@
     max-width: 400px;
   }
 
-  .select {
-    width: 100%;
-    height: 42px;
-    padding: 10px 14px;
-    font-size: 15px;
+  .customSelect {
+    max-width: 196px;
+    row-gap: 16px;
   }
 
-  .mileageBox {
-    height: 42px;
+  .selectTrigger {
+    max-width: 196px;
+    height: 32px;
+    padding: 0 16px;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .option {
+    font-size: 12px;
+    padding: 8px 14px;
   }
 
   .mileageInputWrapper {
-    width: auto; /* Змінити з 186px на auto */
+    width: auto;
     padding-left: 14px;
   }
 
+  .mileageBox {
+    width: 400px;
+    height: 32px;
+    margin: 0;
+  }
+
   .mileageLabel {
-    font-size: 15px;
-    margin-right: 8px;
+    font-size: 12px;
   }
 
   .mileageInput {
-    font-size: 15px;
-    padding: 10px 14px 10px 0; /* Розкоментувати */
+    font-size: 12px;
   }
 
   .searchBtn {
     width: 156px;
-    height: 42px;
-    font-size: 14px;
+    height: 32px;
   }
 }
 
-/* Desktop: 1440px+ */
 @media (min-width: 1440px) {
   .wrapper {
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 16px;
     padding: 0;
-    min-width: 924px;
-    margin: 0 auto 40px auto;
+    max-width: 924px;
+    margin: 0 auto 56px auto;
     align-items: flex-end;
   }
 
@@ -208,70 +306,80 @@
     flex: 1;
   }
 
-  .select {
-    width: 200px;
-    height: 44px;
-    padding: 12px 16px;
+  .label {
+    font-size: 12px;
+  }
+
+  .placeholder {
     font-size: 16px;
+    font-weight: 500;
+  }
+
+  .selectedValue {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .selectTrigger {
+    max-width: 170px;
+    border-radius: 12px;
+    width: 204px;
+    height: 44px;
+    margin: 0;
+  }
+
+  .option {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .optionsList {
+    max-height: 400px;
+    width: 202px;
+  }
+  .mileageField {
+    flex: 1.5;
+    height: auto;
+    max-width: none;
+    margin: 0;
   }
 
   .mileageBox {
+    width: 100%;
     height: 44px;
+    margin: 0;
+    min-width: 320px;
   }
 
   .mileageInputWrapper {
-    width: auto; /* Змінити з 144px на auto */
     padding-left: 16px;
+    max-width: none;
+    height: 100%;
+    flex: 1;
+    min-width: 120px;
   }
 
   .mileageLabel {
     font-size: 16px;
+    font-weight: 500;
+    padding: 0;
     margin-right: 8px;
+    flex-shrink: 0;
   }
 
   .mileageInput {
     font-size: 16px;
+    height: 100%;
+    width: 100%;
     padding: 12px 16px 12px 0;
+    min-width: 80px;
   }
 
   .searchBtn {
     width: 156px;
     height: 44px;
-    font-size: 14px;
-  }
-}
-
-/* Додаткові адаптації для мобільних пристроїв */
-@media (max-width: 480px) {
-  .wrapper {
-    gap: 12px;
-    padding: 0 16px; /* Додати менші падінги для маленьких екранів */
-  }
-
-  .field,
-  .mileageField {
-    flex: 1 1 100%;
-  }
-
-  .mileageBox {
-    min-height: 40px; /* Гарантуємо мінімальну висоту */
-  }
-
-  .mileageInputWrapper {
-    padding-left: 12px;
-  }
-
-  .mileageLabel {
-    font-size: 12px; /* Трохи менший текст для мобільної версії */
-    margin-right: 4px; /* Менший відступ для мобільної версії */
-  }
-
-  .mileageInput {
-    font-size: 12px; /* Менший текст для мобільної версії */
-    padding: 8px 8px 8px 0; /* Менші падінги */
-  }
-
-  .searchBtn {
-    margin-top: 8px;
+    flex-shrink: 0;
+    font-weight: 600;
+    font-size: 16px;
   }
 }
