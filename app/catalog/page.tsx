@@ -17,12 +17,21 @@ export default function CatalogPage() {
     fetchCars({}, 1);
   }, []);
 
+  const isInitialLoad = loading && cars.length === 0;
+  const isLoadingMore = loading && cars.length > 0;
+
   return (
     <div className="container">
       <div className={styles.catalog}>
         <Filters />
 
-        {cars.length === 0 && !loading ? (
+        {isInitialLoad && (
+          <div className={styles.globalLoader}>
+            <Loader />
+          </div>
+        )}
+
+        {!isInitialLoad && cars.length === 0 ? (
           <div className={styles.noResults}>
             <p>No cars found matching your criteria.</p>
           </div>
@@ -32,9 +41,13 @@ export default function CatalogPage() {
               {cars.map((car) => (
                 <CarCard key={car.id} car={car} />
               ))}
-            </div>
 
-            {loading && <Loader />}
+              {isLoadingMore && (
+                <div className={styles.loaderContainer}>
+                  <Loader />
+                </div>
+              )}
+            </div>
 
             {!loading && hasMore && (
               <div className={styles.loadMoreContainer}>

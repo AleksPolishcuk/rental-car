@@ -1,4 +1,3 @@
-// Header.tsx
 import Link from "next/link";
 import css from "./Header.module.css";
 
