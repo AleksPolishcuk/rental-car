@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useCarStore } from "@/lib/store/carStore";
 import Filters from "@/components/Filters/Filters";
 import { CarCard } from "@/components/CarCard/CarCard";
-import { Loader } from "@/components/UI/Loader/Loader";
+import { SimpleLoader as Loader } from "@/components/UI/Loader/SimpleLoader";
 import { Button } from "@/components/UI/Button/Button";
 import styles from "./CatalogPage.module.css";
 
