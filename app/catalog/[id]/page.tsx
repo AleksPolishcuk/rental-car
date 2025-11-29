@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Car } from "@/types/car";
 import { carApi } from "@/lib/api/api";
 import { BookingForm } from "@/components/BookingForm/BookingForm";
-import { Loader } from "@/components/UI/Loader/Loader";
+import { Loader } from "../../../components/UI/Loader/Loader";
 import { formatMileage, extractCityFromAddress } from "@/lib/utils/format";
 import styles from "./CarDetails.module.css";
 
