@@ -1,5 +1,5 @@
 import Link from "next/link";
-import css from "../Hero/Hero.module.css";
+import css from "@/components/Hero/Hero.module.css";
 
 export default function Hero() {
   return (
