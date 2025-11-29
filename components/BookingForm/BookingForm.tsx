@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import { BookingFormData } from "@/types/car";
 import { carApi } from "@/lib/api/api";
-import { CustomDatePicker } from "../UI/Input/CustomDatePicker";
+import { CustomDatePicker } from "@/components/UI/Input/CustomDatePicker";
 import styles from "./BookingForm.module.css";
 
 interface BookingFormProps {
