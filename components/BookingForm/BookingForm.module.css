@@ -1,20 +1,22 @@
 .form {
-  background: var(--white);
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
+  padding: 32px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-light);
 }
 
 .formTitle {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 8px;
-  color: var(--text-dark);
+  line-height: 1.2;
+  color: var(--main);
 }
 
 .formSubtitle {
-  font-size: 14px;
-  color: var(--text-light);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--gray);
   margin-bottom: 24px;
 }
 
@@ -24,18 +26,27 @@
 
 .input,
 .textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 14px;
+  width: 534px;
+  padding: 12px 20px;
+  background: #f7f7f7;
+  color: var(--main);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 16px;
   transition: border-color 0.3s ease;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--gray); /* Використання вашої змінної */
+  opacity: 0.7;
 }
 
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: var(--primary-blue);
+  border-color: #3b82f6;
 }
 
 .textarea {
@@ -44,20 +55,25 @@
 }
 
 .submitButton {
-  width: 100%;
-  background-color: var(--primary-blue);
+  display: block;
+  justify-content: center;
+  margin: 0 auto;
+  min-width: 156px;
+  background-color: var(--button);
   color: var(--white);
-  padding: 12px 24px;
+  padding: 12px 54px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
+  line-height: 1.25;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .submitButton:hover {
-  background-color: var(--dark-blue);
+  background-color: #0b44cd;
+  transition: background-color 0.3s ease;
+  transform: translateY(-2px);
 }
 
 .submitButton:disabled {

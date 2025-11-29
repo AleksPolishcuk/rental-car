@@ -1,8 +1,10 @@
+// components/BookingForm/BookingForm.tsx
 "use client";
 
 import React, { useState } from "react";
 import { BookingFormData } from "@/types/car";
 import { carApi } from "@/lib/api/api";
+import { CustomDatePicker } from "../UI/Input/CustomDatePicker";
 import styles from "./BookingForm.module.css";
 
 interface BookingFormProps {
@@ -44,10 +46,14 @@ export const BookingForm: React.FC<BookingFormProps> = ({ carId }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleDateChange = (date: string) => {
+    setFormData((prev) => ({ ...prev, bookingDate: date }));
+  };
+
   if (submitted) {
     return (
       <div className={styles.successMessage}>
-        <h3>🎉 Success!</h3>
+        <h3>Success!</h3>
         <p>Your car has been booked successfully!</p>
       </div>
     );
@@ -85,12 +91,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({ carId }) => {
       </div>
 
       <div className={styles.formGroup}>
-        <input
-          type="date"
-          name="bookingDate"
+        <CustomDatePicker
           value={formData.bookingDate}
-          onChange={handleChange}
-          className={styles.input}
+          onChange={handleDateChange}
           required
         />
       </div>

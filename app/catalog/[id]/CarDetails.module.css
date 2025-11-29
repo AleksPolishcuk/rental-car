@@ -1,104 +1,193 @@
 .details {
-  padding: 40px 0;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-  max-width: 1440px;
+  padding: 84px 0;
+  display: flex;
+  gap: 72px;
   margin: 0 120px;
+  align-items: flex-start;
 }
 
-.carInfo {
+/* Ліва колонка */
+.leftColumn {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 40px;
+}
+
+.imageSection {
+  min-width: 640px;
 }
 
 .carImage {
-  width: 100%;
-  height: 400px;
+  width: 640px;
+  height: 512px;
   object-fit: cover;
   border-radius: 12px;
 }
 
-.mainInfo {
+.bookingSection {
+  width: 100%;
+}
+
+/* Права колонка */
+.rightColumn {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+}
+
+/* Рядок з заголовком та ID */
+.titleRow {
+  display: flex;
+  align-items: center;
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 24px;
+  color: #101828;
+  line-height: 1.2;
+  margin: 20px 0 8px;
 }
 
-.location {
+.carId {
+  font-family: var(--font-family);
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #8d929a;
+  margin-top: 18px;
+  margin-left: 16px;
+}
+
+.locationRow {
   display: flex;
+  align-items: center;
   gap: 16px;
+  margin-bottom: 16px;
+}
+
+.locationItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   color: var(--text-light);
   font-size: 14px;
+  line-height: 1.42857;
+}
+
+/* Ціна */
+.price {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--button);
+  margin-bottom: 32px;
 }
 
 .description {
+  font-family: var(--font-family);
+  font-weight: 500;
   font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-dark);
+  line-height: 1.25;
+  color: var(--main);
+  margin-bottom: 68px;
 }
 
-.specs,
-.accessories,
-.functionalities,
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: var(--main);
+}
+
+/* Умови оренди
 .rentalConditions {
-  padding: 20px;
-  background-color: var(--background-gray);
-  border-radius: 12px;
-}
-
-.specs h3,
-.accessories h3,
-.functionalities h3,
-.rentalConditions h3 {
-  margin-bottom: 16px;
-  color: var(--text-dark);
-  font-size: 18px;
-}
-
-.specsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-}
-
-.accessories ul,
-.functionalities ul {
-  list-style: none;
-  padding: 0;
-}
-
-.accessories li,
-.functionalities li {
-  padding: 4px 0;
-  color: var(--text-dark);
-}
-
+  padding: 24px;
+} */
 .conditionsGrid {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 110px;
 }
 
 .condition {
-  background-color: var(--white);
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--main);
 }
 
-.bookingSection {
-  position: sticky;
-  top: 100px;
-  height: fit-content;
+.checkIcon {
+  fill: #101828;
+  flex-shrink: 0;
+}
+
+/* Специфікації */
+/* .specs {
+} */
+
+.specsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 110px;
+}
+
+.specItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* Аксесуари та функціонал */
+/* .features {
+  padding: 24px;
+  background-color: var(--background-gray);
+  border-radius: 12px;
+} */
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dark);
+  font-size: 14px;
+}
+
+/* Іконки */
+.icon {
+  fill: #101828;
+  flex-shrink: 0;
+}
+
+.checkIcon {
+  fill: #101828;
+  flex-shrink: 0;
+}
+
+.icon svg,
+.checkIcon svg {
+  fill: #101828;
 }
 
 .notFound {
@@ -106,77 +195,4 @@
   padding: 80px 20px;
   font-size: 18px;
   color: var(--text-light);
-}
-
-/* Адаптація для планшетів */
-@media (max-width: 1439px) {
-  .details {
-    margin: 0 80px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .details {
-    margin: 0 60px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .details {
-    margin: 0 40px;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 30px;
-  }
-}
-
-/* Адаптація для мобільних пристроїв */
-@media (max-width: 768px) {
-  .details {
-    margin: 0 20px;
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .bookingSection {
-    position: static;
-  }
-
-  .carImage {
-    height: 300px;
-  }
-
-  .title {
-    font-size: 24px;
-  }
-
-  .location {
-    flex-direction: column;
-    gap: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .details {
-    margin: 0 16px;
-    padding: 24px 0;
-  }
-
-  .carImage {
-    height: 250px;
-  }
-
-  .specsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .conditionsGrid {
-    flex-direction: column;
-  }
-
-  .specs,
-  .accessories,
-  .functionalities,
-  .rentalConditions {
-    padding: 16px;
-  }
 }

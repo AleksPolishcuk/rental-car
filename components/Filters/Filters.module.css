@@ -3,7 +3,7 @@
   flex-direction: column;
   margin: 0 auto 32px auto;
   width: 100%;
-  padding: 0 20px;
+  /* padding: 0 20px; */
   box-sizing: border-box;
   align-self: center;
 }
