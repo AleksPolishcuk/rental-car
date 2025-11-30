@@ -252,7 +252,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
   };
 
   const getPlaceholderText = (): string => {
-    return isFocused ? "ДД.ММ.РРРР" : "Booking date";
+    return isFocused ? "DD.MM.YYYY" : "Booking date";
   };
 
   const generateCalendarDays = useCallback(() => {
@@ -314,7 +314,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 
       {!isDateValid && (
         <div className={styles.errorMessage}>
-          Введіть або виберіть іншу дату
+          Enter or select a different date.
         </div>
       )}
 

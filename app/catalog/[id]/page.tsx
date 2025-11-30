@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { Car } from "@/types/car";
 import { carApi } from "@/lib/api/api";
 import { BookingForm } from "@/components/BookingForm/BookingForm";
-import { SimpleLoader as Loader } from "@/components/UI/Loader/SimpleLoader";
+import { SimpleLoader as Loader } from "@/components/UI/Loader/Loader";
 import { CarInfoSection } from "./CarInfoSection";
 import { CarImageSection } from "./CarImageSection";
 import styles from "./CarDetails.module.css";
