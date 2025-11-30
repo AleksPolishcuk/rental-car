@@ -11,7 +11,11 @@ interface CarState {
   currentPage: number;
   hasMore: boolean;
 
-  fetchCars: (filters?: Filters, page?: number) => Promise<void>;
+  fetchCars: (
+    filters?: Filters,
+    page?: number,
+    reset?: boolean
+  ) => Promise<void>;
   loadMoreCars: () => Promise<void>;
   setFilters: (filters: Filters) => void;
   resetSearch: () => void;
@@ -29,8 +33,12 @@ export const useCarStore = create<CarState>((set, get) => ({
   currentPage: 1,
   hasMore: false,
 
-  fetchCars: async (filters = {}, page = 1) => {
-    set({ loading: true });
+  fetchCars: async (filters = {}, page = 1, reset = true) => {
+    if (reset) {
+      set({ loading: true, cars: [] });
+    } else {
+      set({ loading: true });
+    }
 
     try {
       const response = await carApi.getCars({
@@ -45,7 +53,7 @@ export const useCarStore = create<CarState>((set, get) => ({
       const totalPagesNum = Number(response.totalPages);
 
       set({
-        cars: response.cars,
+        cars: reset ? response.cars : [...get().cars, ...response.cars],
         totalPages: totalPagesNum,
         currentPage: currentPageNum,
         hasMore: currentPageNum < totalPagesNum,
@@ -79,8 +87,13 @@ export const useCarStore = create<CarState>((set, get) => ({
       const pageNum = Number(response.page);
       const totalPagesNum = Number(response.totalPages);
 
+      const existingCarIds = new Set(cars.map((car) => car.id));
+      const newCars = response.cars.filter(
+        (car) => !existingCarIds.has(car.id)
+      );
+
       set({
-        cars: [...cars, ...response.cars],
+        cars: [...cars, ...newCars],
         currentPage: pageNum,
         totalPages: totalPagesNum,
         hasMore: pageNum < totalPagesNum,

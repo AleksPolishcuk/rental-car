@@ -30,7 +30,6 @@ export default function CarDetailsPage() {
 
   return (
     <div className="container">
-      {/* Mobile версія */}
       <div className={styles.mobileDetails}>
         <CarImageSection car={car} />
         <div className={styles.detailsContent}>
@@ -41,7 +40,6 @@ export default function CarDetailsPage() {
         </div>
       </div>
 
-      {/* Tablet & Desktop версія */}
       <div className={styles.details}>
         <div className={styles.leftColumn}>
           <CarImageSection car={car} />
