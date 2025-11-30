@@ -54,9 +54,11 @@ The platform allows users to browse, filter, and book rental cars with an intuit
 ### ❤️ User Experience
 
 * Favorites stored in localStorage
+* Accessible components (ARIA support)
+  
+IN FUTURE
 * Skeleton loaders
 * Error boundaries
-* Accessible components (ARIA support)
 
 ---
 
