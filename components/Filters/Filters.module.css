@@ -393,7 +393,7 @@
   grid-column: 1 / -1;
 }
 
-.resetBtn {
+/* .resetBtn {
   border-radius: 12px;
   padding: 10px 20px;
   background: #6b7280;
@@ -410,7 +410,7 @@
 .resetBtn:hover {
   background: #4b5563;
   transform: translateY(-1px);
-}
+} */
 
 @media (min-width: 768px) {
   .searchError {
