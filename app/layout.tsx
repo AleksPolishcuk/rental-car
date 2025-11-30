@@ -1,3 +1,4 @@
+"use client";
 import "./globals.css";
 import { Manrope, Inter } from "next/font/google";
 import Header from "@/components/Header/Header";
@@ -13,15 +14,21 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
 });
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ua" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>RentalCar - Find Your Perfect Car</title>
+        <meta
+          name="description"
+          content="Reliable and budget-friendly car rentals for any journey"
+        />
       </head>
       <body>
         <div className="container">

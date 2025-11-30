@@ -3,8 +3,13 @@
   border-radius: 12px;
   transition: all 0.3s ease;
   position: relative;
-  width: 276px;
-  /* padding: 16px; */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 12px;
 }
 
 .card:hover {
@@ -132,9 +137,7 @@
   display: inline-block;
   background-color: #3470ff;
   color: #fff;
-  padding: 12px 0;
   border-radius: 12px;
-  font-size: 16px;
   font-weight: 600;
   line-height: 1.25;
   text-align: center;
@@ -143,8 +146,60 @@
   cursor: pointer;
   border: none;
   text-decoration: none;
+  padding: 10px 0;
+  font-size: 14px;
+  margin-top: auto;
 }
 
 .readMore:hover {
   background-color: #0b44cd;
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: 276px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .readMore {
+    padding: 11px 0;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card {
+    width: 276px;
+  }
+
+  .readMore {
+    padding: 12px 0;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 374px) {
+  .card {
+    max-width: 280px;
+    padding: 10px;
+  }
+
+  .readMore {
+    padding: 8px 0;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 424px) {
+  .card {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 425px) and (max-width: 767px) {
+  .card {
+    max-width: 320px;
+  }
 }

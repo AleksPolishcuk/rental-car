@@ -1,38 +1,111 @@
+/* Base Button Styles - Common for all screen sizes */
 .button {
-  border: 1px solid #3470ff;
-  background-color: #fff;
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+
+  font-weight: 600;
   line-height: 1.25;
   color: #101828;
-  padding: 12px 38px;
+
   border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
+  border: 1px solid var(--button);
+  background-color: #fff;
   cursor: pointer;
-  min-width: 156px;
+  transition: all 0.3s ease;
+
+  /* Mobile First (320px) */
+  padding: 10px 24px;
+  font-size: 14px;
+  min-width: 120px;
+  height: 36px;
 }
 
-/* .primary {
-  border: 1px solid #3470ff;
+.primary {
+  border: 1px solid var(--button);
   color: #101828;
-  padding: 12px 32px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  min-width: 200px;
-} */
+  background-color: #fff;
+}
 
-.primary:hover {
-  border: 1px solid #0b44cd;
+.secondary {
+  background-color: #f7f7f7;
+  color: #101828;
+  border: 1px solid #dadde1;
+}
+
+.button:hover:not(:disabled) {
   transform: translateY(-2px);
 }
 
-/* .secondary {
-  background-color: #fff;
-  color: var(--text-dark);
+.primary:hover:not(:disabled) {
+  border: 1px solid var(--button-hover);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.button:focus {
+  outline: 2px solid var(--button-hover);
+  outline-offset: 2px;
 }
 
 .button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-} */
+  transform: none !important;
+}
+
+.fullWidth {
+  width: 100%;
+  min-width: auto;
+}
+
+/*  (менше 375px) */
+@media (max-width: 374px) {
+  .button {
+    padding: 8px 20px;
+    font-size: 12px;
+    min-width: 100px;
+    height: 32px;
+  }
+}
+
+/* Tablet (768px - 1439px) */
+@media (min-width: 768px) {
+  .button {
+    padding: 12px 32px;
+    font-size: 16px;
+    min-width: 140px;
+    height: 40px;
+  }
+}
+
+/* Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .button {
+    padding: 12px 0;
+    width: 156px;
+    height: 44px;
+    min-width: auto;
+  }
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--button-hover);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button:hover:not(:disabled) {
+    transform: none;
+  }
+}
