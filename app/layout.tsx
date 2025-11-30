@@ -20,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ua" className={`${manrope.variable} ${inter.variable}`}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body>
         <div className="container">
           <Header />
