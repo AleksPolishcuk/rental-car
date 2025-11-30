@@ -1,198 +1,536 @@
-.details {
-  padding: 84px 0;
-  display: flex;
-  gap: 72px;
-  margin: 0 120px;
-  align-items: flex-start;
-}
-
-/* Ліва колонка */
-.leftColumn {
-  flex: 1;
+/* Mobile First - гумова верстка (320px-374px) */
+.mobileDetails {
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 10px;
+  min-width: 276px;
+  margin: 0 20px;
+}
+
+.detailsContent {
+  width: 276px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
 .imageSection {
-  min-width: 640px;
+  width: 276px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .carImage {
-  width: 640px;
-  height: 512px;
+  height: 268px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 19px;
 }
 
 .bookingSection {
   width: 100%;
 }
 
-/* Права колонка */
-.rightColumn {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Рядок з заголовком та ID */
 .titleRow {
   display: flex;
-  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 
 .title {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 12px;
   color: #101828;
   line-height: 1.2;
-  margin: 20px 0 8px;
+  margin: 0;
 }
 
 .carId {
+  display: flex;
+  align-self: flex-end;
   font-family: var(--font-family);
-
   font-weight: 400;
-  font-size: 14px;
+  font-size: 7px;
   line-height: 1.42857;
   color: #8d929a;
-  margin-top: 18px;
-  margin-left: 16px;
 }
 
 .locationRow {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 
 .locationItem {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   color: var(--text-light);
-  font-size: 14px;
+  font-size: 7px;
   line-height: 1.42857;
 }
 
-/* Ціна */
 .price {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 24px;
+  font-size: 12px;
   line-height: 1.33333;
   color: var(--button);
-  margin-bottom: 32px;
+  margin-bottom: 8px;
 }
 
 .description {
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 8px;
   line-height: 1.25;
   color: var(--main);
-  margin-bottom: 68px;
+  margin-bottom: 16px;
 }
 
 .sectionTitle {
-  font-size: 20px;
+  font-size: 10px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   line-height: 1.2;
   color: var(--main);
 }
 
-/* Умови оренди
-.rentalConditions {
-  padding: 24px;
-} */
 .conditionsGrid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 110px;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .condition {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 8px;
   line-height: 1.25;
   color: var(--main);
 }
 
-.checkIcon {
-  fill: #101828;
-  flex-shrink: 0;
-}
-
-/* Специфікації */
-/* .specs {
-} */
-
 .specsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-  margin-bottom: 110px;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .specItem {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 8px;
 }
-
-/* Аксесуари та функціонал */
-/* .features {
-  padding: 24px;
-  background-color: var(--background-gray);
-  border-radius: 12px;
-} */
 
 .featureList {
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 12px;
-  margin: 0;
+  grid-template-columns: 1fr;
+  gap: 6px;
 }
 
 .featureItem {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   color: var(--text-dark);
-  font-size: 14px;
+  font-size: 8px;
+  font-weight: 500;
 }
 
-/* Іконки */
-.icon {
-  fill: #101828;
-  flex-shrink: 0;
-}
-
+.icon,
 .checkIcon {
   fill: #101828;
   flex-shrink: 0;
-}
-
-.icon svg,
-.checkIcon svg {
-  fill: #101828;
+  width: 8px;
+  height: 8px;
 }
 
 .notFound {
   text-align: center;
-  padding: 80px 20px;
-  font-size: 18px;
+  padding: 20px 10px;
+  font-size: 9px;
   color: var(--text-light);
+}
+
+@media (min-width: 375px) {
+  .mobileDetails {
+    padding: 22px 0;
+  }
+  .title {
+    font-size: 13px;
+  }
+  .carId {
+    font-size: 8px;
+  }
+  .locationItem {
+    font-size: 8px;
+  }
+  .description {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobileDetails {
+    display: none;
+  }
+
+  .details {
+    padding: 40px 0;
+    display: flex;
+    gap: 32px;
+    margin: 0 32px;
+    align-items: flex-start;
+  }
+
+  .leftColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .imageSection {
+    min-width: 343px;
+  }
+
+  .carImage {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .bookingSection {
+    width: 100%;
+  }
+
+  .rightColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .titleRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 20px;
+    color: #101828;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .carId {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.42857;
+    color: #8d929a;
+    margin: 0;
+  }
+
+  .locationRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .locationItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.42857;
+  }
+
+  .price {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.33333;
+    color: var(--button);
+    margin-bottom: 24px;
+  }
+
+  .description {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.25;
+    color: var(--main);
+    margin-bottom: 40px;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    color: var(--main);
+  }
+
+  .conditionsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 50px;
+  }
+
+  .condition {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.25;
+    color: var(--main);
+  }
+
+  .specsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 50px;
+  }
+
+  .specItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .featureList {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    margin: 0;
+  }
+
+  .featureItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dark);
+    font-size: 12px;
+  }
+
+  .icon,
+  .checkIcon {
+    fill: #101828;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  .notFound {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 16px;
+    color: var(--text-light);
+  }
+}
+
+@media (min-width: 1440px) {
+  .details {
+    padding: 84px 0;
+    display: flex;
+    gap: 72px;
+    margin: 0 auto;
+    align-items: flex-start;
+    max-width: 1200px;
+  }
+
+  .leftColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .imageSection {
+    min-width: 640px;
+  }
+
+  .carImage {
+    width: 640px;
+    height: 512px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .bookingSection {
+    width: 100%;
+  }
+
+  .rightColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .titleRow {
+    display: flex;
+    align-items: center;
+    /* margin-top: 20px; */
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+    color: #101828;
+    line-height: 1.2;
+  }
+
+  .carId {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.42857;
+    color: #8d929a;
+    margin-left: 16px;
+  }
+
+  .locationRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .locationItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.42857;
+  }
+
+  .price {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.33333;
+    margin-bottom: 32px;
+  }
+
+  .description {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--main);
+    margin-bottom: 68px;
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: var(--main);
+  }
+
+  .conditionsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 110px;
+  }
+
+  .condition {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--main);
+  }
+
+  .specsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 110px;
+  }
+
+  .specItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .featureList {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin: 0;
+  }
+
+  .featureItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dark);
+    font-size: 14px;
+  }
+
+  .icon,
+  .checkIcon {
+    fill: #101828;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  .notFound {
+    text-align: center;
+    padding: 80px 20px;
+    font-size: 18px;
+    color: var(--text-light);
+  }
+}
+
+@media (max-width: 767px) {
+  .details {
+    display: none;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .container {
+    padding: 0 32px;
+  }
 }

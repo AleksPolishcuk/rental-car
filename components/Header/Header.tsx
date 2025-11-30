@@ -1,14 +1,19 @@
 import Link from "next/link";
 import css from "./Header.module.css";
+import Image from "next/image";
 
 export default function Header() {
   return (
     <header className={css.wrapper}>
       <div className={css.container}>
         <Link href="/" aria-label="Home" className={css.headerLogoWrapper}>
-          <svg width="104" height="16" aria-label="Logo">
-            <use href="/RentalCar.svg"></use>
-          </svg>
+          <Image
+            src="/RentalCar.svg"
+            alt="Car Rental Logo"
+            width={104}
+            height={16}
+            className={css.logo}
+          />
         </Link>
         <nav aria-label="Main Navigation">
           <ul className={css.navigation}>
