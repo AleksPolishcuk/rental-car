@@ -275,37 +275,6 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
     }));
   }, [currentMonth, isDateSelectable]);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node) &&
-        calendarRef.current &&
-        !calendarRef.current.contains(event.target as Node)
-      ) {
-        setShowCalendar(false);
-        setShowCalendarButton(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    if (value) {
-      const formattedDate = formatDisplayValue(value);
-      const date = parse(value, "yyyy-MM-dd", new Date());
-
-      setInputValue((prev) => (prev !== formattedDate ? formattedDate : prev));
-      setCurrentMonth((prev) => (!isSameMonth(prev, date) ? date : prev));
-      setIsDateValid(isDateSelectable(date));
-    } else {
-      setInputValue("");
-      setIsDateValid(true);
-    }
-  }, [value]);
-
   const calendarDays = generateCalendarDays();
 
   return (

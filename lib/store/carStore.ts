@@ -53,7 +53,7 @@ export const useCarStore = create<CarState>((set, get) => ({
         loading: false,
       });
     } catch (err) {
-      console.error(err);
+      console.error("Failed to fetch cars:", err);
       set({ loading: false, hasMore: false });
     }
   },
@@ -87,8 +87,8 @@ export const useCarStore = create<CarState>((set, get) => ({
         loading: false,
       });
     } catch (err) {
-      console.error(err);
-      set({ loading: false, hasMore: false });
+      console.error("Failed to load more cars:", err);
+      set({ loading: false });
     }
   },
 
@@ -113,7 +113,11 @@ export const useCarStore = create<CarState>((set, get) => ({
   },
 
   loadFavorites: () => {
-    const saved = localStorage.getItem("car-favorites");
-    if (saved) set({ favorites: JSON.parse(saved) });
+    try {
+      const saved = localStorage.getItem("car-favorites");
+      if (saved) set({ favorites: JSON.parse(saved) });
+    } catch (err) {
+      console.error("Failed to load favorites:", err);
+    }
   },
 }));

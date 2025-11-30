@@ -37,3 +37,32 @@ export interface BookingFormData {
   bookingDate: string;
   comment: string;
 }
+
+export interface ApiParams {
+  brand?: string;
+  rentalPrice?: string;
+  minMileage?: number;
+  maxMileage?: number;
+  page?: number;
+}
+
+export interface ApiResponse<T> {
+  data: T;
+  status: number;
+  statusText: string;
+}
+
+export interface ErrorResponse {
+  message: string;
+  status: number;
+  code?: string;
+}
+
+export interface CarInfoSectionProps {
+  car: Car;
+  isMobile?: boolean;
+}
+
+export interface CarImageSectionProps {
+  car: Car;
+}
