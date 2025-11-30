@@ -1,3 +1,4 @@
+/* Основний лоадер */
 .loader {
   border: 16px solid #f3f3f3;
   border-top: 16px solid #3498db;
@@ -5,24 +6,74 @@
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
+}
+
+.loader.small {
+  width: 40px;
+  height: 40px;
+  border-width: 4px;
+}
+
+.loader.medium {
+  width: 60px;
+  height: 60px;
+  border-width: 8px;
+}
+
+.loader.large {
+  width: 120px;
+  height: 120px;
+  border-width: 16px;
+}
+
+/* Простий лоадер */
+.simpleLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.simpleSpinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Лоадер з оверлеєм */
+.loaderWithOverlay {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.loaderWithOverlay .loader {
+  position: static;
+  transform: none;
 }
 
 @keyframes spin {
   0% {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
+/* Адаптивність */
 @media (max-width: 767px) {
-  .loader {
+  .loader:not(.small):not(.medium):not(.large) {
     width: 60px;
     height: 60px;
     border-width: 8px;
@@ -30,7 +81,7 @@
 }
 
 @media (min-width: 768px) and (max-width: 1439px) {
-  .loader {
+  .loader:not(.small):not(.medium):not(.large) {
     width: 90px;
     height: 90px;
     border-width: 12px;
@@ -38,7 +89,7 @@
 }
 
 @media (min-width: 1440px) {
-  .loader {
+  .loader:not(.small):not(.medium):not(.large) {
     width: 120px;
     height: 120px;
     border-width: 16px;

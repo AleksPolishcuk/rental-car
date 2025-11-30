@@ -1,17 +1,33 @@
-import css from "./Loader.module.css";
+import React from "react";
+import styles from "./Loader.module.css";
 
 interface LoaderProps {
   withOverlay?: boolean;
+  size?: "small" | "medium" | "large";
+  type?: "spinner" | "simple";
 }
 
-export const Loader = ({ withOverlay = false }: LoaderProps) => {
-  if (withOverlay) {
+export const Loader: React.FC<LoaderProps> = ({
+  withOverlay = false,
+  size = "medium",
+  type = "spinner",
+}) => {
+  if (type === "simple") {
     return (
-      <div className={css.loaderWithOverlay}>
-        <div className={css.loader}></div>
+      <div className={styles.simpleLoader}>
+        <div className={styles.simpleSpinner}></div>
       </div>
     );
   }
 
-  return <div className={css.loader}></div>;
+  if (withOverlay) {
+    return (
+      <div className={styles.loaderWithOverlay}>
+        <div className={`${styles.loader} ${styles[size]}`}></div>
+      </div>
+    );
+  }
+
+  return <div className={`${styles.loader} ${styles[size]}`}></div>;
 };
+export const SimpleLoader = () => <Loader type="simple" />;

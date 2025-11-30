@@ -31,26 +31,25 @@ export const BookingForm: React.FC<BookingFormProps> = ({ carId }) => {
   // Валідаційні функції українською
   const validateName = (name: string): string | undefined => {
     if (!name.trim()) {
-      return "Ім'я обов'язкове для заповнення";
+      return "Name is required.";
     }
     if (name.trim().length < 2) {
-      return "Ім'я має містити щонайменше 2 символи";
+      return "Name must contain at least 2 characters";
     }
     return undefined;
   };
 
   const validateEmail = (email: string): string | undefined => {
     if (!email.trim()) {
-      return "Електронна пошта обов'язкова для заповнення";
+      return "Email is required.";
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return "Будь ласка, введіть коректну електронну пошту";
+      return "Please enter a valid email address.";
     }
     return undefined;
   };
 
-  // Валідація окремого поля
   const validateField = (name: string, value: string) => {
     let error: string | undefined;
 
@@ -68,7 +67,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({ carId }) => {
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
-  // Загальна валідація форми
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {
       name: validateName(formData.name),
@@ -82,7 +80,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({ carId }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Позначити всі поля як touched для показу всіх помилок
     const allTouched = {
       name: true,
       email: true,
@@ -90,7 +87,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({ carId }) => {
     };
     setTouched(allTouched);
 
-    // Перевірити валідацію
     if (!validateForm()) {
       return;
     }
@@ -119,7 +115,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({ carId }) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Валідувати поле при зміні, якщо воно вже було touched
     if (touched[name]) {
       validateField(name, value);
     }
@@ -128,7 +123,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({ carId }) => {
   const handleDateChange = (date: string) => {
     setFormData((prev) => ({ ...prev, bookingDate: date }));
 
-    // Валідувати дату при зміні, якщо вона вже була touched
     if (touched.bookingDate) {
       validateField("bookingDate", date);
     }
