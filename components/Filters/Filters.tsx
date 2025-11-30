@@ -285,7 +285,7 @@ export default function Filters() {
         >
           Search
         </button>
-
+        {/* 
         {activeFilters && (
           <button
             className={styles.resetBtn}
@@ -294,7 +294,7 @@ export default function Filters() {
           >
             Reset
           </button>
-        )}
+        )} */}
       </div>
 
       {searchError && <div className={styles.searchError}>{searchError}</div>}

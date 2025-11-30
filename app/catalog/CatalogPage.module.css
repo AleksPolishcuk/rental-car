@@ -20,6 +20,16 @@
   margin-top: 20px;
 }
 
+.noResults {
+  text-align: center;
+  margin: 0 auto;
+  padding: 30px 20px;
+  color: var(--gray);
+  font-size: 12px;
+  width: 280px;
+  /* grid-column: 1 / -1; */
+}
+
 .loadMoreContainer {
   display: flex;
   justify-content: center;
@@ -70,6 +80,10 @@
   .noMoreResults {
     font-size: 16px;
     padding: 30px;
+  }
+  .noResults {
+    font-size: 18px;
+    min-width: 650px;
   }
 }
 
