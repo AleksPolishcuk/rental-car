@@ -1,179 +1,202 @@
-RentalCar - Car Rental Platform
+# 🚗 RentalCar — Modern Car Rental Platform
 
-https://img.shields.io/badge/Next.js-16.0.4-black
-https://img.shields.io/badge/React-19.2.0-blue
-https://img.shields.io/badge/TypeScript-5.9.3-blue
-https://img.shields.io/badge/Zustand-5.0.8-purple
+A modern and responsive **car rental web application** built with **Next.js**, **TypeScript**, and **Zustand**.
+The platform allows users to browse, filter, and book rental cars with an intuitive and user-friendly interface.
 
-A modern car rental web application built with Next.js, TypeScript, and Zustand for state management. The platform allows users to browse, filter, and book rental cars with an intuitive user interface.
+🔗 **Live Demo:** [https://rental-car-beta-five.vercel.app](https://rental-car-beta-five.vercel.app)
 
-🚀 Live Demo
-Link: rental-car-beta-five.vercel.app
+---
 
-📋 Project Overview
-RentalCar is a frontend web application for a car rental company that provides:
+## 📌 Table of Contents
 
-Home page with hero section and call-to-action
-Catalog page with advanced filtering and pagination
-Car details page with comprehensive information and booking form
-Favorites functionality to save preferred vehicles
-Responsive design for all device types
+* [Overview](#overview)
+* [Features](#features)
+* [Tech Stack](#tech-stack)
+* [Project Structure](#project-structure)
+* [API](#api)
+* [Getting Started](#getting-started)
+* [Design & UX](#design--ux)
+* [Scripts](#scripts)
+* [Environment Variables](#environment-variables)
+* [Developer](#developer)
 
-🛠️ Technology Stack
-Core Technologies
+---
 
-Framework: Next.js 16.0.4 with App Router
-Language: TypeScript 5.9.3
-State Management: Zustand 5.0.8
-HTTP Client: Axios 1.13.2
-Styling: CSS Modules with responsive design
-Date Handling: date-fns 4.1.0
-Key Features Implemented
+## 📋 Overview
 
-✅ Server-side rendering with Next.js App Router
-✅ Type-safe development with TypeScript
-✅ Global state management with Zustand
-✅ Advanced filtering (brand, price, mileage)
-✅ Pagination with "Load More" functionality
-✅ Favorites system with localStorage persistence
-✅ Error boundaries for robust error handling
-✅ Responsive design for mobile, tablet, and desktop
-✅ Accessible form components
-✅ Custom date picker component
+**RentalCar** is a frontend-focused application for rental companies. It includes:
 
-📁 Project Structure
+* Home page with hero section and CTA
+* Catalog with advanced filtering and pagination
+* Car details page with full specifications and booking form
+* Favorites system (localStorage)
+* Fully responsive UI designed for mobile, tablet, and desktop
 
+---
+
+## 🎯 Features
+
+### 🔎 Catalog & Filtering
+
+* Brand filtering
+* Price-per-hour filtering
+* Mileage range filtering
+* Real-time search with API requests
+* "Load More" button for pagination
+
+### 🚘 Car Details Page
+
+* Full technical specifications
+* High-quality gallery
+* Fully validated booking form
+* Responsive layout
+
+### ❤️ User Experience
+
+* Favorites stored in localStorage
+* Skeleton loaders
+* Error boundaries
+* Accessible components (ARIA support)
+
+---
+
+## 🛠 Tech Stack
+
+| Category             | Technologies                |
+| -------------------- | --------------------------- |
+| **Framework**        | Next.js 16 (App Router)     |
+| **Language**         | TypeScript 5                |
+| **State Management** | Zustand 5                   |
+| **HTTP Client**      | Axios 1                     |
+| **Styling**          | CSS Modules                 |
+| **Date Handling**    | date-fns 4                  |
+| **Rendering**        | Server-side Rendering / CSR |
+
+---
+
+## 📁 Project Structure
+
+```
 rental-car/
-├── app/ # Next.js App Router pages
-│ ├── catalog/ # Catalog page and dynamic routes
-│ ├── layout.tsx # Root layout with error boundary
-│ └── page.tsx # Home page
-├── components/ # Reusable React components
-│ ├── UI/ # Basic UI components
-│ ├── Filters/ # Filter components
-│ ├── CarCard/ # Car card component
-│ ├── BookingForm/ # Booking form component
-│ └── ErrorBoundary/ # Error handling components
-├── lib/ # Utility libraries and configurations
-│ ├── store/ # Zustand store definitions
-│ ├── api/ # API client and endpoints
-│ ├── hooks/ # Custom React hooks
-│ └── utils/ # Utility functions
-├── types/ # TypeScript type definitions
-└── public/ # Static assets
+├── app/
+│   ├── catalog/
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── UI/
+│   ├── Filters/
+│   ├── CarCard/
+│   ├── BookingForm/
+│   └── ErrorBoundary/
+├── lib/
+│   ├── store/
+│   ├── api/
+│   ├── hooks/
+│   └── utils/
+├── types/
+└── public/
+```
 
-🎯 Key Features
-Catalog & Filtering
+---
 
-Advanced Filters: Filter by brand, price per hour, and mileage range
-Real-time Search: Instant filtering with backend API calls
-Pagination: Load more functionality with infinite scroll pattern
-Car Cards: Comprehensive vehicle information with favorite toggle
-Car Details
+## 📚 API
 
-Detailed Information: Full specifications, rental conditions, and features
-Image Gallery: High-quality vehicle images
-Booking Form: Secure booking with form validation
-Responsive Layout: Optimized for all screen sizes
-User Experience
+Base URL: **[https://car-rental-api.goit.global](https://car-rental-api.goit.global)**
 
-Favorites System: Save favorite cars with localStorage persistence
-Error Handling: Comprehensive error boundaries and user-friendly messages
-Loading States: Skeleton loaders and progress indicators
-Accessibility: ARIA labels and keyboard navigation support
+### Endpoints:
 
-🚀 Getting Started
-Prerequisites
+* **GET /cars** — paginated list with filtering
+* **GET /cars/:id** — get a single car
+* **GET /brands** — list of available brands
+* **POST /cars/:id/booking** — submit a booking (IN FUTURE)
 
-Node.js 18+
-npm or yarn
-Installation
+### 🔐 API Features
 
-Clone the repository
-bash
+* Backend-driven filtering
+* Real-time availability
+* Detailed error handling
+* Safe booking submission
+
+---
+
+## 🚀 Getting Started
+
+### ✔ Prerequisites
+
+* Node.js 18+
+* npm or yarn
+
+### ✔ Installation
+
+```bash
 git clone https://github.com/your-username/rental-car.git
 cd rental-car
-Install dependencies
-bash
 npm install
+```
 
-# or
+### ✔ Run Development Server
 
-yarn install
-Run the development server
-bash
+```bash
 npm run dev
+```
 
-# or
+Open in browser:
+**[http://localhost:3000](http://localhost:3000)**
 
-yarn dev
-Open your browser
-Navigate to http://localhost:3000
-Building for Production
+### ✔ Build for Production
 
-bash
+```bash
 npm run build
 npm start
+```
 
-📚 API Integration
-The application integrates with the Car Rental API:
+---
 
-Base URL: https://car-rental-api.goit.global
+## 🎨 Design & UX
 
-Available Endpoints
+### 📐 Design System
 
-GET /cars - Get paginated car list with filtering
-GET /cars/:id - Get specific car details
-GET /brands - Get available car brands
-POST /cars/:id/booking - Book a car
+* Fonts: **Manrope**, **Inter**
+* Color palette: modern blue theme
+* Icon set: custom SVG system
+* Grid: 8px spacing system
 
-API Features
+### 📱 Responsive Breakpoints
 
-Backend-powered filtering and pagination
-Real-time availability checking
-Secure booking submissions
-Comprehensive error handling
+| Device  | Width      |
+| ------- | ---------- |
+| Mobile  | 320–767px  |
+| Tablet  | 768–1439px |
+| Desktop | 1440px+    |
 
-🎨 Design & UX
-Design System
+---
 
-Typography: Manrope and Inter font families
-Color Palette: Professional blue theme with accessible contrasts
-Icons: Custom SVG icon system
-Spacing: Consistent 8px grid system
-Responsive Breakpoints
+## 🔧 Scripts
 
-Mobile: 320px - 767px
-Tablet: 768px - 1439px
-Desktop: 1440px+
+```bash
+npm run dev     # Run development server
+npm run build   # Build for production
+npm run start   # Start production mode
+npm run lint    # Lint codebase
+```
 
-🔧 Development Scripts
+---
 
-bash
-npm run dev # Start development server
-npm run build # Build for production
-npm run start # Start production server
-npm run lint # Run ESLint
+## 🔒 Environment Variables
 
-🛡️ Error Handling
+Create `.env.local`:
 
-React Error Boundary implementation
-API error interception and user-friendly messages
-Network failure handling
-Form validation with detailed error messages
-
-🚀 Deployment
-
-The application is optimized for deployment on Vercel:
-
-Connect your GitHub repository to Vercel
-Configure environment variables if needed
-Deploy automatically on git push
-Environment Variables
-
-env
+```
 NEXT_PUBLIC_API_URL=https://car-rental-api.goit.global
+```
 
-👨‍💻 Developer: Oleksandr Polishchuk
+---
 
-GitHub: [https://github.com/AleksPolishcuk]
+## 👨‍💻 Developer
+
+**Oleksandr Polishchuk**
+GitHub: [https://github.com/AleksPolishcuk](https://github.com/AleksPolishcuk)
+
+---
+
+⭐ *If you like this project, feel free to star the repository!*
