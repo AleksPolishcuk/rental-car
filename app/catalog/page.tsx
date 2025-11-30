@@ -14,11 +14,19 @@ export default function CatalogPage() {
 
   useEffect(() => {
     loadFavorites();
-    fetchCars({}, 1);
-  }, []);
+    fetchCars({}, 1, true);
+  }, [loadFavorites, fetchCars]);
 
   const isInitialLoad = loading && cars.length === 0;
   const isLoadingMore = loading && cars.length > 0;
+
+  const handleLoadMore = async () => {
+    try {
+      await loadMoreCars();
+    } catch (error) {
+      console.error("Failed to load more cars:", error);
+    }
+  };
 
   return (
     <div className="container">
@@ -49,11 +57,17 @@ export default function CatalogPage() {
               )}
             </div>
 
-            {!loading && hasMore && (
+            {!loading && hasMore && cars.length > 0 && (
               <div className={styles.loadMoreContainer}>
-                <Button onClick={loadMoreCars} variant="primary">
+                <Button onClick={handleLoadMore} variant="primary">
                   Load more
                 </Button>
+              </div>
+            )}
+
+            {!hasMore && cars.length > 0 && (
+              <div className={styles.noMoreResults}>
+                <p>No more cars to load</p>
               </div>
             )}
           </>

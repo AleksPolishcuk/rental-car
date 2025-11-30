@@ -5,7 +5,6 @@ export const nextServer = axios.create({
   timeout: 10000,
 });
 
-// Додано глобальну обробку помилок
 nextServer.interceptors.response.use(
   (response) => response,
   (error) => {

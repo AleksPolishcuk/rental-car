@@ -112,6 +112,7 @@ export default function Filters() {
   const [brands, setBrands] = useState<string[]>([]);
   const [localFilters, setLocalFilters] =
     useState<LocalFilters>(DEFAULT_FILTERS);
+  const [searchError, setSearchError] = useState<string>("");
 
   const { setFilters, resetSearch, fetchCars } = useCarStore();
 
@@ -150,6 +151,7 @@ export default function Filters() {
         ...prev,
         [filterKey]: value,
       }));
+      setSearchError("");
     },
     []
   );
@@ -174,33 +176,35 @@ export default function Filters() {
     if (
       !validateMileageRange(localFilters.mileageFrom, localFilters.mileageTo)
     ) {
-      alert(ERROR_MESSAGES.INVALID_MILEAGE_RANGE);
+      setSearchError(ERROR_MESSAGES.INVALID_MILEAGE_RANGE);
       return;
     }
+
+    setSearchError("");
 
     try {
       resetSearch();
       const normalizedFilters = normalizeFilters(localFilters);
 
       setFilters(normalizedFilters);
-      await fetchCars(normalizedFilters, 1);
+      await fetchCars(normalizedFilters, 1, true);
     } catch (error) {
       console.error(ERROR_MESSAGES.SEARCH_FAILED, error);
-      alert(ERROR_MESSAGES.SEARCH_FAILED);
+      setSearchError(ERROR_MESSAGES.SEARCH_FAILED);
     }
   }, [localFilters, resetSearch, setFilters, fetchCars]);
 
-  // const handleReset = useCallback(() => {
-  //   setLocalFilters(DEFAULT_FILTERS);
-  //   resetSearch();
-  //   fetchCars({}, 1);
-  // }, [resetSearch, fetchCars]);
+  const handleReset = useCallback(() => {
+    setLocalFilters(DEFAULT_FILTERS);
+    setSearchError("");
+    resetSearch();
+    fetchCars({}, 1, true);
+  }, [resetSearch, fetchCars]);
 
-  // Перевірка чи є активні фільтри
-  // const activeFilters = useMemo(
-  //   () => hasActiveFilters(localFilters),
-  //   [localFilters]
-  // );
+  const activeFilters = useMemo(
+    () => hasActiveFilters(localFilters),
+    [localFilters]
+  );
 
   const handleKeyPress = useCallback(
     (e: React.KeyboardEvent) => {
@@ -282,7 +286,7 @@ export default function Filters() {
           Search
         </button>
 
-        {/* {activeFilters && (
+        {activeFilters && (
           <button
             className={styles.resetBtn}
             onClick={handleReset}
@@ -290,8 +294,10 @@ export default function Filters() {
           >
             Reset
           </button>
-        )} */}
+        )}
       </div>
+
+      {searchError && <div className={styles.searchError}>{searchError}</div>}
     </div>
   );
 }
